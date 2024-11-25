@@ -1,0 +1,7 @@
+{
+  "name": "tev03_parte1",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
