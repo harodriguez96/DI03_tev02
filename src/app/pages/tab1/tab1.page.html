@@ -1,0 +1,12 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngFor="let noticia of gestionNoticias.getNoticias()">
+    <ion-item>
+      <ion-checkbox slot="start"  [checked]="isChecked(noticia)" (ionChange)="gestionNoticias.setNoticiasLeer(noticia, $event.detail.checked)"></ion-checkbox>
+      <div>
+        <app-noticias-header [noticia]="noticia"></app-noticias-header>
+      </div>
+    </ion-item>
+  </ng-container>
+</ion-content>

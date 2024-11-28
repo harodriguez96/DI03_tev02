@@ -35,3 +35,18 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+ion-checkbox {
+    --size: 32px;
+    --checkbox-background-checked: blue;
+  }
+  
+  ion-checkbox::part(container) {
+    border-radius: 6px;
+    border: 2px solid grey;
+  }
+
+  .button-row {
+    display: flex;
+    justify-content: space-between;
+  }
