@@ -10,6 +10,10 @@ import { IArticle } from '../../interfaces/mis-interfaces';
 export class Tab1Page {
 
   constructor(public gestionNoticias: GestionNoticiasService) {};
+
+  ngOnInit() { 
+    this.gestionNoticias.getNoticiasREST('general'); 
+  }
  
   isChecked(articulo: IArticle): boolean {
      return this.gestionNoticias.boxStatus(articulo);

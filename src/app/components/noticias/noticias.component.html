@@ -1,0 +1,16 @@
+<ion-card> <!-- Tarjeta de Ionic para cada noticia -->
+  <ion-card-header> <!-- Encabezado de la tarjeta -->
+    <ion-card-header>
+      <ion-card-title>{{noticia.title}}</ion-card-title>
+      <ion-card-subtitle>{{noticia.source.name}}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card-header>
+  <img src="{{noticia.urlToImage}}" /> <!-- Imagen de la noticia -->
+  <ion-card-content> <!-- Contenido de la tarjeta -->
+    {{noticia.description }} <!-- Descripción de la noticia -->
+  </ion-card-content>
+  <div class="button-row"> <!-- Fila de botones debajo del contenido de la tarjeta -->
+    <ion-button fill="clear"><a target="_blank" rel="noopener noreferrer" href="{{noticia.url}}">Leer</a></ion-button> <!-- Botón que abre el enlace de la noticia en una nueva pestaña -->
+    <ion-button fill="clear" (click)="alertaVentana(noticia)"><ion-icon name="trash"></ion-icon></ion-button> <!-- Botón que muestra una ventana de alerta para confirmar el borrado de la noticia -->
+  </div>     
+</ion-card>

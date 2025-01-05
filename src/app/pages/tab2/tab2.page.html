@@ -1,22 +1,17 @@
-<app-header></app-header>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Mis Noticias
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ng-container *ngFor="let noticia of gestionNoticias.getNoticiasLeer()">
-    <ion-item>
+
+<ion-content [fullscreen]="true"> <!-- Contenido principal de la página, que se muestra en pantalla completa -->
+  <ng-container *ngFor="let noticia of noticiasAlmacenadas"> <!-- Itera sobre la lista de noticias para leer -->
+    <ion-item> <!-- Elemento de la lista de Ionic -->
       <div>
-        <ion-card>
-          <ion-card-header>
-            <app-noticias-header [noticia]="noticia"></app-noticias-header>
-          </ion-card-header>
-          <img src="{{noticia.urlToImage}}" />
-          <ion-card-content>
-            {{ noticia.description }}
-          </ion-card-content>
-          <div class="button-row"> 
-            <ion-button fill="clear"><a target="_blank" rel="noopener noreferrer" href="{{noticia.url}}">Leer</a></ion-button>
-            <ion-button fill="clear" (click)="alertaVentana(noticia)"><ion-icon name="trash"></ion-icon></ion-button>
-          </div>     
-        </ion-card>
+        <app-noticias [noticia]="noticia"></app-noticias>
       </div>
     </ion-item>
   </ng-container>

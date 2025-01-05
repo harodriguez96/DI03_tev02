@@ -1,12 +1,24 @@
-<app-header></app-header>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Mis Noticias
+    </ion-title>
+  </ion-toolbar>
+  <app-ion-segment></app-ion-segment>
+</ion-header>
 
+<!-- Contenido principal de la página -->
 <ion-content [fullscreen]="true">
+  <!-- Contenedor que recorre cada noticia obtenida de gestionNoticias -->
   <ng-container *ngFor="let noticia of gestionNoticias.getNoticias()">
+    <!-- Elemento de lista de ítems de Ionic -->
     <ion-item>
-      <ion-checkbox slot="start"  [checked]="isChecked(noticia)" (ionChange)="gestionNoticias.setNoticiasLeer(noticia, $event.detail.checked)"></ion-checkbox>
-      <div>
-        <app-noticias-header [noticia]="noticia"></app-noticias-header>
-      </div>
+      <!-- Checkbox al inicio del ítem, ligado a la propiedad 'checked' y que ejecuta una función al cambiar su estado -->
+      <ion-checkbox slot="start" [checked]="isChecked(noticia)" (ionChange)="gestionNoticias.setNoticiasLeer(noticia, $event.detail.checked)"></ion-checkbox>
+      <ion-label>
+        <h3>{{ noticia.source.name}} </h3>
+        <p> {{ noticia.title}} </p>
+      </ion-label>
     </ion-item>
   </ng-container>
 </ion-content>
