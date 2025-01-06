@@ -11,9 +11,16 @@ export class GestionNoticiasService {
 
   private noticias : IArticle[] =[]; // Lista de artículos obtenidos
   private noticiasLeer : IArticle[] =[]; // Lista de artículos marcados para leer
-  private checkedBox: boolean = false; // Variable de control para el estado de un checkbox (actualmente no utilizada)
+
 
   constructor(private leerFichero: HttpClient, private servidorRest : HttpClient, private gestionAlmacenamiento : GestionStorageService) { 
+    this.cargarNoticiasInicio();
+  }
+
+  async cargarNoticiasInicio() { 
+    this.noticiasLeer = await this.gestionAlmacenamiento.getObject('Noticias') || []; 
+    this.gestionAlmacenamiento.noticias$.subscribe(nuevasNoticias => { this.noticiasLeer = nuevasNoticias; }
+    );
   }
   /*
   getNoticiasFichero() {
@@ -58,7 +65,7 @@ export class GestionNoticiasService {
           console.log('Noticias leer:', this.noticiasLeer);
       }
   } else {
-      this.noticiasLeer = this.noticiasLeer.filter(n => n !== articulo); // Elimina el artículo
+      this.noticiasLeer = this.noticiasLeer.filter(n => n.title !== articulo.title); // Elimina el artículo
       this.gestionAlmacenamiento.setObject("Noticias", this.noticiasLeer);
 
       console.log('Noticias leer:', this.noticiasLeer);
@@ -72,7 +79,9 @@ export class GestionNoticiasService {
   }
 
   boxStatus(articulo: IArticle) { 
-    return this.noticiasLeer.includes(articulo); // Devuelve true si el artículo está en la lista noticiasLeer
+    return this.noticiasLeer.some(n => n.title === articulo.title); // Devuelve true si el artículo está en la lista noticiasLeer
+
+    
   }
 
 }
